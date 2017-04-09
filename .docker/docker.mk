@@ -1,5 +1,3 @@
-.PHONY: image logs prune pull quality run shell stop
-
 image: ## Build an rlucioni/courtbot image
 	docker build --tag rlucioni/courtbot:latest .
 
@@ -12,7 +10,7 @@ prune: ## Delete stopped containers and dangling images
 pull: ## Update the rlucioni/courtbot image
 	docker pull rlucioni/courtbot
 
-run: prune ## Start a container derived from the rlucioni/courtbot image
+run: ## Start a container derived from the rlucioni/courtbot image
 	docker run --detach --name courtbot --env-file .docker/env --restart on-failure rlucioni/courtbot
 
 shell: ## Open a shell on a running container
@@ -20,3 +18,6 @@ shell: ## Open a shell on a running container
 
 stop: ## Stop a running container
 	docker stop courtbot
+
+test: ## Run tests inside a container
+	docker run --interactive --tty rlucioni/courtbot flake8 && pytest

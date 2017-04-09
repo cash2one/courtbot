@@ -1,5 +1,6 @@
 cachetools==2.0.0
 dryscrape==1.0
 flake8==3.3.0
+pytest==3.0.7
 requests==2.13.0
 slackclient==1.0.5
